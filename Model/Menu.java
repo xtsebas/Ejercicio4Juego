@@ -71,13 +71,13 @@ public class Menu {
         items.add(item);
     }
     public static boolean randomenemies() {
-        op = num.nextInt(4);
+        op = num.nextInt(3);
         if (op == 0) {
             System.out.println("No hay enemigos cerca, avance");
             tf = false;
         } else if (op > 0 && op < 4) {
             System.out.println("Hay " + op + " enemigo/s, HORA DE COMBATIR!");
-            for (int i = 0; i < op+1; i++) {
+            for (int i = 0; i < op; i++) {
                 newenemy();
                 if (enemies.get(i).getPower()==4){
                     System.out.println("CUIDADO, HAY UN/MAS JEFE ENTRE LOS ENEMIGOS");
@@ -88,7 +88,7 @@ public class Menu {
         return tf;
     }
     public static void showenemies() {
-        for (int i = 1; i < enemies.size(); i++) {
+        for (int i = 0; i < enemies.size(); i++) {
             System.out.println("Enemigo " + i + " Poder: " + enemies.get(i).getPower() + " Vida: " + enemies.get(i).getLife());
         }
     }
@@ -98,26 +98,33 @@ public class Menu {
         }
     }
     public static int enemydead(){
-        if (enemies.size()==2){
-            if (enemies.get(0).getLife()<=0) {
+        if (enemies.size()==1){
+            if (enemies.get(0).getLife()==0) {
                 System.out.println("//////////////////////HAS GANADO, FELICIDADES//////////////////////////////////");
                 System.out.println("Desea continuar la aventura? \n1. Si \n2. No");
                 follow = in.nextInt();
             }
-        } else if (enemies.size()==3) {
-            if (enemies.get(0).getLife()<=0 && enemies.get(1).getLife()<=0 ) {
+        } else if (enemies.size()==2) {
+            if (enemies.get(0).getLife()==0 && enemies.get(1).getLife()==0 ) {
                 System.out.println("//////////////////////HAS GANADO, FELICIDADES//////////////////////////////////");
                 System.out.println("Desea continuar la aventura? \n1. Si \n2. No");
                 follow = in.nextInt();
             }
-        } else if (enemies.size()==4){
-            if (enemies.get(0).getLife()<=0 && enemies.get(1).getLife()<=0 && enemies.get(2).getLife()<=0 ) {
+        } else if (enemies.size()==3){
+            if (enemies.get(0).getLife()==0 && enemies.get(1).getLife()==0 && enemies.get(2).getLife()==0 ) {
                 System.out.println("//////////////////////HAS GANADO, FELICIDADES//////////////////////////////////");
                 System.out.println("Desea continuar la aventura? \n1. Si \n2. No");
                 follow = in.nextInt();
             }
         }
         return follow;
+    }
+    public static void lifenemy(){
+        for (int i = 0; i < enemies.size(); i++) {
+            if (enemies.get(i).getLife()<0){
+                enemies.get(i).setLife(0);
+            }
+        }
     }
 
     public static boolean fight() {
@@ -143,6 +150,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 65);
+                                        lifenemy();
                                         player.setLife(player.getLife()+10);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -155,6 +163,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 40);
+                                        lifenemy();
                                         player.setLife(player.getLife()+10);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -176,6 +185,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 50);
+                                    lifenemy();
                                     player.setLife(player.getLife()+10);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -195,6 +205,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 40);
+                                    lifenemy();
                                     player.setLife(player.getLife()+10);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -219,6 +230,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 75);
+                                        lifenemy();
                                         player.setLife(player.getLife()+5);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -231,6 +243,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 50);
+                                        lifenemy();
                                         player.setLife(player.getLife()+5);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -251,6 +264,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 60);
+                                    lifenemy();
                                     player.setLife(player.getLife()+5);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -270,6 +284,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 50);
+                                    lifenemy();
                                     player.setLife(player.getLife()+5);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -294,6 +309,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 55);
+                                        lifenemy();
                                         player.setLife(player.getLife()+25);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -306,6 +322,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 20);
+                                        lifenemy();
                                         player.setLife(player.getLife()+25);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -326,6 +343,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 30);
+                                    lifenemy();
                                     player.setLife(player.getLife()+25);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -345,6 +363,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 20);
+                                    lifenemy();
                                     player.setLife(player.getLife()+25);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -393,6 +412,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 35);
+                                        lifenemy();
                                         player.setLife(player.getLife()+10);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -405,6 +425,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 20);
+                                        lifenemy();
                                         player.setLife(player.getLife()+10);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -426,6 +447,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 20);
+                                    lifenemy();
                                     player.setLife(player.getLife()+45);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -445,6 +467,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 40);
+                                    lifenemy();
                                     player.setLife(player.getLife()+10);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -469,6 +492,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 65);
+                                        lifenemy();
                                         player.setLife(player.getLife()+15);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -481,6 +505,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 50);
+                                        lifenemy();
                                         player.setLife(player.getLife()+5);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -501,6 +526,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 50);
+                                    lifenemy();
                                     player.setLife(player.getLife()+50);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -520,6 +546,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 70);
+                                    lifenemy();
                                     player.setLife(player.getLife()+15);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -544,6 +571,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 55);
+                                        lifenemy();
                                         player.setLife(player.getLife()+25);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -556,6 +584,7 @@ public class Menu {
                                         en = in.nextInt();
                                         in.nextLine();
                                         enemies.get(en).setLife(enemies.get(en).getLife() - 20);
+                                        lifenemy();
                                         player.setLife(player.getLife()+25);
                                         System.out.println("///////////////////////////////\n estado del enemigo: ");
                                         showenemies();
@@ -576,6 +605,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 10);
+                                    lifenemy();
                                     player.setLife(player.getLife()+30);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -595,6 +625,7 @@ public class Menu {
                                     en = in.nextInt();
                                     in.nextLine();
                                     enemies.get(en).setLife(enemies.get(en).getLife() - 30);
+                                    lifenemy();
                                     player.setLife(player.getLife()+30);
                                     System.out.println("///////////////////////////////\n estado del enemigo: ");
                                     showenemies();
@@ -627,26 +658,24 @@ public class Menu {
                 }
             }else {
                 System.out.println("EL enemigo atacara, preparate!!!");
-                if (enemies.size() > 1) {
                     if (enemies.size()-1==1){
-                        N=1;
+                        N=0;
                     } else if (enemies.size()-1==2) {
                         nu=num.nextInt(2);
                         if (nu==0){
-                            N=1;
+                            N=0;
                         }else {
-                            N=2;
+                            N=1;
                         }
                     }else if (enemies.size()-1==3){
                         nu=num.nextInt(3);
                         if (nu==0){
-                            N=1;
+                            N=0;
                         }else if (nu==1){
-                            N=2;
+                            N=1;
                         }else if (nu==2){
-                            N=3;
+                            N=2;
                         }
-                    }
                     switch (enemies.get(N).getPower()){
                         case 0:
                             for (Player player:players){
@@ -685,6 +714,18 @@ public class Menu {
                             }
                             break;
                         case 3:
+                            for (Player player:players){
+                                player.setLife(player.getLife()-35);
+                                System.out.println("El enemigo " + N + " ataco!");
+                                System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
+                                if (player.getLife() <= 0){
+                                    System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
+                                    good=false;
+                                    tf=good;
+                                }
+                            }
+                            break;
+                        case 4:
                             for (Player player:players){
                                 player.setLife(player.getLife()-40);
                                 System.out.println("El enemigo " + N + " ataco!");

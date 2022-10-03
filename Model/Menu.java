@@ -13,6 +13,7 @@ public class Menu {
     private static int nu;
     private static int N;
     static Random num= new Random();
+    static Random num2= new Random();
     static Scanner in= new Scanner(System.in);
     private static String name;
     private static int hability;
@@ -658,24 +659,53 @@ public class Menu {
                 }
             }else {
                 System.out.println("EL enemigo atacara, preparate!!!");
-                    if (enemies.size()-1==1){
+                    if (enemies.size()==1){
                         N=0;
-                    } else if (enemies.size()-1==2) {
+                    } else if (enemies.size()==2) {
                         nu=num.nextInt(2);
                         if (nu==0){
-                            N=0;
+                            if (enemies.get(nu).getLife()>0){
+                                N=0;
+                            } else {N=1;}
                         }else {
-                            N=1;
+                            if (enemies.get(nu).getLife()>0){
+                                N=1;
+                            } else {N=0;}
                         }
-                    }else if (enemies.size()-1==3){
-                        nu=num.nextInt(3);
-                        if (nu==0){
-                            N=0;
-                        }else if (nu==1){
-                            N=1;
-                        }else if (nu==2){
-                            N=2;
+                    }else if (enemies.size()==3) {
+                        nu = num.nextInt(3);
+                        if (nu == 0) {
+                            if (enemies.get(nu).getLife()>0){
+                                N=0;
+                            } else {
+                                if (num2.nextInt(2)==0){
+                                    N=1;
+                                }else {
+                                    N=2;
+                                }
+                            }
+                        } else if (nu == 1) {
+                            if (enemies.get(nu).getLife()>0){
+                                N=1;
+                            } else {
+                                if (num2.nextInt(2)==0){
+                                    N=0;
+                                }else {
+                                    N=2;
+                                }
+                            }
+                        } else if (nu == 2) {
+                            if (enemies.get(nu).getLife()>0){
+                                N=2;
+                            } else {
+                                if (num2.nextInt(2)==0){
+                                    N=0;
+                                }else {
+                                    N=1;
+                                }
+                            }
                         }
+                    }
                     switch (enemies.get(N).getPower()){
                         case 0:
                             for (Player player:players){
@@ -740,9 +770,9 @@ public class Menu {
 
                     }
                 }
-            }
             n=n+1;
-        }
+            }
+        enemies.clear();
         return tf;
     }
 

@@ -6,10 +6,11 @@ public class DriverProgram {
     public static boolean tf;
     public static int op;
     public static boolean fight;
+    public static boolean fight2;
     static Scanner in= new Scanner(System.in);
     public static void main(String[] args) {
         System.out.println("BIENVENIDO A PARADISE CITY \nELIGE EL MODO DE JUEGO:");
-        System.out.println("1. Un jugador\n2.Batalla personalizada");
+        System.out.println("1. Un jugador\n2.Batalla personalizada (1 vs 1)");
         op=in.nextInt();
         in.nextLine();
         switch (op){
@@ -31,6 +32,13 @@ public class DriverProgram {
                 }
                 break;
             case 2:
+                Menu2.createbattle();
+                fight2=true;
+                while (fight2){
+                    Menu2.status();
+                    System.out.println("");
+                    fight2=Menu2.fight();
+                }
                 break;
         }
     }

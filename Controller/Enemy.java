@@ -1,11 +1,17 @@
 package Controller;
 
 import java.util.Random;
+/*
+*Clase creadora de enemigos
+ */
 
 public class Enemy {
     private int power;
     private int life;
     Random num= new Random();
+    /*
+    *Constructor de enemigo
+     */
 
     public Enemy(){
         setPower(num.nextInt(5));
@@ -28,6 +34,10 @@ public class Enemy {
         }
 
     }
+
+    /*
+    *Getters y setters de enemigos
+     */
 
     public int getPower() {
         return power;

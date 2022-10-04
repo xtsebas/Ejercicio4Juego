@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+/*
+*Clase que controla el menu para supervivencia
+ */
 
 
 public class Menu {
@@ -31,7 +34,9 @@ public class Menu {
     static boolean good;
     static boolean evil;
     static private int follow;
-
+/*
+*creador de guerrero
+ */
     public static Warrior newwarrior(){
         Warrior warrior=new Warrior(name, weapon, hability, life);
         if (warrior.getHability()==2){
@@ -40,6 +45,9 @@ public class Menu {
         players.add(warrior);
         return warrior;
     }
+    /*
+    *creador de explorador
+     */
     public static Explorer newexplorer(){
         Explorer explorer=new Explorer(name, weapon, hability, life);
         if (explorer.getHability()==1){
@@ -48,6 +56,9 @@ public class Menu {
         players.add(explorer);
         return explorer;
     }
+    /*
+    *creador de nuevo jugador
+     */
     public static void newplayer(){
         System.out.println("Cual nombre tendra?");
         name=in.nextLine();
@@ -61,16 +72,25 @@ public class Menu {
         }
         System.out.println("Jugador ingresado correctamente");
     }
-
+/*
+*creador de nuevo enemigo
+ */
     public static void newenemy(){
         Enemy enemy=new Enemy();
         enemies.add(enemy);
     }
-
+/*
+*creador de nuevo item
+ */
     public static void newitem(){
         Items item= new Items();
         items.add(item);
     }
+
+    /*
+    *Generador de enemigos randoms
+    * @return tf (boolean)
+     */
     public static boolean randomenemies() {
         op = num.nextInt(3);
         if (op == 0) {
@@ -88,16 +108,26 @@ public class Menu {
         }
         return tf;
     }
+    /*
+    *funcion que enseña enemigos
+     */
     public static void showenemies() {
         for (int i = 0; i < enemies.size(); i++) {
             System.out.println("Enemigo " + i + " Poder: " + enemies.get(i).getPower() + " Vida: " + enemies.get(i).getLife());
         }
     }
+    /*
+    *funcion que enseña items
+     */
     public static void showitems(){
         for (int i = 0; i < items.size(); i++) {
             System.out.println("Item " + i + " Vida que puede recuperar: " + items.get(i).getLifes());
         }
     }
+    /*
+    * funcion que lee la lista y vida de los oponentes, para saber si el usuario pudo ganar
+    * @return follow
+     */
     public static int enemydead(){
         if (enemies.size()==1){
             if (enemies.get(0).getLife()==0) {
@@ -120,6 +150,9 @@ public class Menu {
         }
         return follow;
     }
+    /*
+    *funcion que obliga  a la vida del enemigo a mantenerse en 0 cuando muere
+     */
     public static void lifenemy(){
         for (int i = 0; i < enemies.size(); i++) {
             if (enemies.get(i).getLife()<0){
@@ -127,7 +160,10 @@ public class Menu {
             }
         }
     }
-
+/*
+*funcion que realiza la batalla entre el usuario y los enemigos
+* @return tf
+ */
     public static boolean fight() {
         n = 1;
         good=true;
@@ -776,6 +812,9 @@ public class Menu {
         return tf;
     }
 
+/*
+*funcion que revisa si hay enemigos, si no hay, se investiga la zona
+ */
     public static void notfigth(){
         System.out.println("Desea gastar 10 de vida para investigar la zona? \n1. Si \n2. No");
         op=in.nextInt();

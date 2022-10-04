@@ -1,20 +1,27 @@
 package Controller;
 
 import java.util.Scanner;
-
+/*
+*clase creadora de jugador
+ */
 public class Player {
     protected int weapon;
     protected static int life;
     protected int hability;
     protected String name;
     Scanner in= new Scanner(System.in);
+    /*
+    *constructor
+     */
     public  Player(String name, int weapon, int habilityelse, int life){
         this.life=life;
         this.name=name;
         this.weapon=weapon;
         this.hability=hability;
     }
-
+/*
+* getters y setters
+ */
     public  String getName() {
         return name;
     }

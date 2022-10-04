@@ -1,9 +1,15 @@
 package Controller;
 
 import java.util.Scanner;
-
+/*
+*clase creadora de jugadores guerreros
+ */
 public class Warrior extends Player{
     Scanner in= new Scanner(System.in);
+    /*
+    *constructor de guerrero
+    * @param name, weapon, hability, life
+     */
 
     public Warrior(String name, int weapon, int hablity, int life){
         super(name, weapon, hablity, life);

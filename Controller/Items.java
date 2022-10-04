@@ -1,11 +1,17 @@
 package Controller;
 
 import java.util.Random;
+/*
+*CLase creadora de items
+ */
 
 public class Items {
     Random num=new Random();
     private static int lifes;
     private static int n;
+    /*
+    *constructor de items
+     */
     public Items(){
         setN(num.nextInt(4));
         switch (n){

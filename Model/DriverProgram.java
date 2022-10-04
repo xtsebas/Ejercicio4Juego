@@ -1,6 +1,9 @@
 package Model;
 
 import java.util.Scanner;
+/*
+*@author Sebastian
+ */
 
 public class DriverProgram {
     public static boolean tf;
@@ -8,8 +11,11 @@ public class DriverProgram {
     public static boolean fight;
     public static boolean fight2;
     static Scanner in= new Scanner(System.in);
+    /*
+    *Clase main, ejecutador del programa
+     */
     public static void main(String[] args) {
-        System.out.println("BIENVENIDO A PARADISE CITY \nELIGE EL MODO DE JUEGO:");
+        System.out.println("////////////////////////////BIENVENIDO A PARADISE CITY///////////////////////////////////////////// \n                      ELIGE EL MODO DE JUEGO:");
         System.out.println("1. Un jugador\n2.Batalla personalizada (1 vs 1)");
         op=in.nextInt();
         in.nextLine();

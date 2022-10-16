@@ -71,9 +71,8 @@ public class Menu2 {
     public static void status(){
         System.out.println("////////////////////////////////////");
         System.out.println("Estado de jugadores: ");
-        for (Player player:players) {
-            System.out.println("Jugador " + player.getName() + "\nVida: " + player.getLife());
-            System.out.println("");
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println("\nNombre: " + players.get(i).getName() + "\nVida: " + players.get(i).getLife());
         }
     }
     public static boolean fight(){
@@ -88,7 +87,6 @@ public class Menu2 {
                         switch (players.get(0).getWeapon()){
                             case 1:
                                 players.get(1).setLife(players.get(1).getLife()-40);
-                                players.get(0).setLife(players.get(0).getLife()+10);
                                 System.out.println("El jugador " + players.get(0).getName()+ " ataco a " + players.get(1).getName());
                                 status();
                         }

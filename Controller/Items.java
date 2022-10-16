@@ -9,8 +9,8 @@ public class Items {
     Random num=new Random();
     private static int lifes;
     private static int n;
-    /*
-    *constructor de items
+    /**
+    *constructor de items   
      */
     public Items(){
         setN(num.nextInt(4));

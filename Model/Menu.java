@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-/*
+/**
 *Clase que controla el menu para supervivencia
  */
 
@@ -34,7 +34,7 @@ public class Menu {
     static boolean good;
     static boolean evil;
     static private int follow;
-/*
+/**
 *creador de guerrero
  */
     public static Warrior newwarrior(){
@@ -45,7 +45,7 @@ public class Menu {
         players.add(warrior);
         return warrior;
     }
-    /*
+    /**
     *creador de explorador
      */
     public static Explorer newexplorer(){
@@ -56,30 +56,37 @@ public class Menu {
         players.add(explorer);
         return explorer;
     }
-    /*
+    public static Cazador newcazador(){
+        Cazador cazador= new Cazador(name, weapon, hability, life);
+        players.add(cazador);
+        return cazador;
+    }
+    /**
     *creador de nuevo jugador
      */
     public static void newplayer(){
         System.out.println("Cual nombre tendra?");
         name=in.nextLine();
-        System.out.println("Que tipo de jugador desea ser: \n1. Guerrero \n2. Explorador");
+        System.out.println("Que tipo de jugador desea ser: \n1. Guerrero \n2. Explorador \n3. Cazador");
         O=in.nextInt();
         in.nextLine();
         if (O==1){
             newwarrior();
         } else if (O==2) {
             newexplorer();
+        } else if (O==3) {
+            newcazador();
         }
         System.out.println("Jugador ingresado correctamente");
     }
-/*
+/**
 *creador de nuevo enemigo
  */
     public static void newenemy(){
         Enemy enemy=new Enemy();
         enemies.add(enemy);
     }
-/*
+/**
 *creador de nuevo item
  */
     public static void newitem(){
@@ -87,10 +94,10 @@ public class Menu {
         items.add(item);
     }
 
-    /*
+    /**
     *Generador de enemigos randoms
     * @return tf (boolean)
-     */
+    **/
     public static boolean randomenemies() {
         op = num.nextInt(3);
         if (op == 0) {
@@ -108,7 +115,7 @@ public class Menu {
         }
         return tf;
     }
-    /*
+    /**
     *funcion que enseña enemigos
      */
     public static void showenemies() {
@@ -116,7 +123,7 @@ public class Menu {
             System.out.println("Enemigo " + i + " Poder: " + enemies.get(i).getPower() + " Vida: " + enemies.get(i).getLife());
         }
     }
-    /*
+    /**
     *funcion que enseña items
      */
     public static void showitems(){
@@ -124,7 +131,7 @@ public class Menu {
             System.out.println("Item " + i + " Vida que puede recuperar: " + items.get(i).getLifes());
         }
     }
-    /*
+    /**
     * funcion que lee la lista y vida de los oponentes, para saber si el usuario pudo ganar
     * @return follow
      */
@@ -150,7 +157,7 @@ public class Menu {
         }
         return follow;
     }
-    /*
+    /**
     *funcion que obliga  a la vida del enemigo a mantenerse en 0 cuando muere
      */
     public static void lifenemy(){
@@ -160,7 +167,7 @@ public class Menu {
             }
         }
     }
-/*
+/**
 *funcion que realiza la batalla entre el usuario y los enemigos
 * @return tf
  */
@@ -433,7 +440,7 @@ public class Menu {
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName() + "\nVida: " + player.getLife());
                             }
                         }
-                    }else {
+                    }else if (O==2){//////////////////////////////////////////////////////////////////////////////////////////////explorador
                         System.out.println("Es tu turno Explorador " + player.getName());
                         System.out.println("1. atacar con espada \n2. recuperar vida");
                         op = in.nextInt();
@@ -691,6 +698,89 @@ public class Menu {
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName() + "\nVida: " + player.getLife());
                             }
                         }
+                    } else if (O==3) {
+                        System.out.println("Es tu turno Cazador " + player.getName());
+                        System.out.println("1. atacar con espada \n2. recuperar vida");
+                        op = in.nextInt();
+                        in.nextLine();
+                        if (op == 1) {
+                            if (player.getWeapon() == 1) {
+                                if (player.getHability() == 3) {
+                                    showenemies();
+                                    System.out.println("Cual enemigo desea atacar (ingresar el numero del enemigo)");
+                                    en = in.nextInt();
+                                    in.nextLine();
+                                    enemies.get(en).setLife(enemies.get(en).getLife() - 60);
+                                    lifenemy();
+                                    player.setLife(player.getLife()+10);
+                                    System.out.println("///////////////////////////////\n estado del enemigo: ");
+                                    showenemies();
+                                    System.out.println("//////////////////////////////// \nestado del jugador");
+                                    System.out.println(player.getName()+"\nVida: "+ player.getLife());
+                                    follow = enemydead();
+                                    if (follow == 1) {
+                                        tf = true;
+                                        evil = false;
+                                    } else if (follow==2) {
+                                        tf = false;
+                                        evil = false;
+                                    }
+
+                                } else if (player.getHability()==1) {
+                                    showenemies();
+                                    System.out.println("Cual enemigo desea atacar (ingresar el numero del enemigo)");
+                                    en = in.nextInt();
+                                    in.nextLine();
+                                    enemies.get(en).setLife(enemies.get(en).getLife() - 40);
+                                    lifenemy();
+                                    player.setLife(player.getLife()+10);
+                                    System.out.println("///////////////////////////////\n estado del enemigo: ");
+                                    showenemies();
+                                    System.out.println("//////////////////////////////// \nestado del jugador");
+                                    System.out.println(player.getName()+"\nVida: "+ player.getLife());
+                                    follow = enemydead();
+                                    if (follow == 1) {
+                                        tf = true;
+                                        evil = false;
+                                    } else if (follow==2) {
+                                        tf = false;
+                                        evil = false;
+                                    }
+                                } else if (player.getHability()==2) {
+                                    showenemies();
+                                    System.out.println("Cual enemigo desea atacar (ingresar el numero del enemigo)");
+                                    en = in.nextInt();
+                                    in.nextLine();
+                                    enemies.get(en).setLife(enemies.get(en).getLife() - 75);
+                                    lifenemy();
+                                    player.setLife(player.getLife()+10);
+                                    System.out.println("///////////////////////////////\n estado del enemigo: ");
+                                    showenemies();
+                                    System.out.println("//////////////////////////////// \nestado del jugador");
+                                    System.out.println(player.getName()+"\nVida: "+ player.getLife());
+                                    follow = enemydead();
+                                    if (follow == 1) {
+                                        tf = true;
+                                        evil = false;
+                                    } else if (follow==2){
+                                        tf = false;
+                                        evil = false;
+                                    }
+                                }
+                            }
+                        } else {
+                            if (items.size()==0){
+                                System.out.println("No tiene ningun objeto de recuperacion de vida, AGUANTA!!");
+                            }else {
+                                showitems();
+                                System.out.println("Cual item desea tomar? ");
+                                I=in.nextInt();
+                                in.nextLine();
+                                System.out.println("Ha tomado el item " + I);
+                                player.setLife(player.getLife()+items.get(I).getLifes());
+                                System.out.println("Estado del Jugador: \nNombre: " + player.getName() + "\nVida: " + player.getLife());
+                            }
+                        }
                     }
                 }
             }else {
@@ -747,6 +837,13 @@ public class Menu {
                             for (Player player:players){
                                 player.setLife(player.getLife()-10);
                                 System.out.println("El enemigo " + N + " ataco!");
+                                if (O==3){
+                                    if (player.getHability()==1){
+                                        player.setLife(player.getLife()+35);
+                                    } else if (player.getHability()==3) {
+                                        player.setLife(player.getLife()+15);
+                                    }
+                                }
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
                                 if (player.getLife() <= 0){
                                     System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
@@ -759,6 +856,13 @@ public class Menu {
                             for (Player player:players){
                                 player.setLife(player.getLife()-20);
                                 System.out.println("El enemigo " + N + " ataco!");
+                                if (O==3){
+                                    if (player.getHability()==1){
+                                        player.setLife(player.getLife()+35);
+                                    } else if (player.getHability()==3) {
+                                        player.setLife(player.getLife()+15);
+                                    }
+                                }
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
                                 if (player.getLife() <= 0){
                                     System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
@@ -771,6 +875,13 @@ public class Menu {
                             for (Player player:players){
                                 player.setLife(player.getLife()-30);
                                 System.out.println("El enemigo " + N + " ataco!");
+                                if (O==3){
+                                    if (player.getHability()==1){
+                                        player.setLife(player.getLife()+35);
+                                    } else if (player.getHability()==3) {
+                                        player.setLife(player.getLife()+15);
+                                    }
+                                }
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
                                 if (player.getLife() <= 0){
                                     System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
@@ -783,6 +894,13 @@ public class Menu {
                             for (Player player:players){
                                 player.setLife(player.getLife()-35);
                                 System.out.println("El enemigo " + N + " ataco!");
+                                if (O==3){
+                                    if (player.getHability()==1){
+                                        player.setLife(player.getLife()+35);
+                                    } else if (player.getHability()==3) {
+                                        player.setLife(player.getLife()+15);
+                                    }
+                                }
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
                                 if (player.getLife() <= 0){
                                     System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
@@ -795,6 +913,13 @@ public class Menu {
                             for (Player player:players){
                                 player.setLife(player.getLife()-40);
                                 System.out.println("El enemigo " + N + " ataco!");
+                                if (O==3){
+                                    if (player.getHability()==1){
+                                        player.setLife(player.getLife()+35);
+                                    } else if (player.getHability()==3) {
+                                        player.setLife(player.getLife()+15);
+                                    }
+                                }
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
                                 if (player.getLife() <= 0){
                                     System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
@@ -812,7 +937,7 @@ public class Menu {
         return tf;
     }
 
-/*
+/**
 *funcion que revisa si hay enemigos, si no hay, se investiga la zona
  */
     public static void notfigth(){
@@ -823,10 +948,21 @@ public class Menu {
             newitem();
             for (Player player: players){
                 player.setLife(player.getLife()-10);
+                if (O==3){
+                    if (player.getHability()==1){
+                        player.setLife(player.getLife()+35);
+                    } else if (player.getHability()==3) {
+                        player.setLife(player.getLife()+15);
+                    }
+                }
                 System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
             }
         }else {
             System.out.println("Sigue adelante!");
         }
+    }
+
+    public static void raidfight(){
+
     }
 }

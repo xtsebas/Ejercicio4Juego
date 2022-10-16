@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.Scanner;
-/*
+/**
 *@author Sebastian
  */
 
@@ -11,8 +11,8 @@ public class DriverProgram {
     public static boolean fight;
     public static boolean fight2;
     static Scanner in= new Scanner(System.in);
-    /*
-    *Clase main, ejecutador del programa
+    /**
+    *Clase main, ejecutador del programa1
      */
     public static void main(String[] args) {
         System.out.println("////////////////////////////BIENVENIDO A PARADISE CITY///////////////////////////////////////////// \n                      ELIGE EL MODO DE JUEGO:");

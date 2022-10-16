@@ -1,12 +1,12 @@
 package Controller;
 
 import java.util.Scanner;
-/*
+/**
 *clase creadora de jugadores exploradores
  */
 public class Explorer extends Player{
     Scanner in= new Scanner(System.in);
-    /*
+    /**
     *Constructor de exploradores
     * @param name, weapon, hability, life
      */

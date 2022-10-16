@@ -10,7 +10,7 @@ public class Player {
     protected int hability;
     protected String name;
     Scanner in= new Scanner(System.in);
-    /*
+    /**
     *constructor
      */
     public  Player(String name, int weapon, int habilityelse, int life){
@@ -19,7 +19,7 @@ public class Player {
         this.weapon=weapon;
         this.hability=hability;
     }
-/*
+/**
 * getters y setters
  */
     public  String getName() {

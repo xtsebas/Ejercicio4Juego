@@ -13,8 +13,8 @@ public class Enemy {
     *Constructor de enemigo
      */
 
-    public Enemy(){
-        setPower(num.nextInt(5));
+    public Enemy(int number){
+        setPower(number);
         switch (getPower()){
             case 0:
                 setLife(50);
@@ -31,6 +31,8 @@ public class Enemy {
             case 4:
                 setLife(130);
                 break;
+            case 5:
+                setLife(500);
         }
 
     }

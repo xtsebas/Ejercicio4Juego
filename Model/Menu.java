@@ -83,7 +83,8 @@ public class Menu {
 *creador de nuevo enemigo
  */
     public static void newenemy(){
-        Enemy enemy=new Enemy();
+        int number= num.nextInt(5);
+        Enemy enemy=new Enemy(number);
         enemies.add(enemy);
     }
 /**
@@ -698,7 +699,7 @@ public class Menu {
                                 System.out.println("Estado del Jugador: \nNombre: " + player.getName() + "\nVida: " + player.getLife());
                             }
                         }
-                    } else if (O==3) {
+                    } else if (O==3) {//////////////////////////CAZADOR
                         System.out.println("Es tu turno Cazador " + player.getName());
                         System.out.println("1. atacar con espada \n2. recuperar vida");
                         op = in.nextInt();
@@ -928,6 +929,25 @@ public class Menu {
                                 }
                             }
                             break;
+                        case 5:
+                            for (Player player:players){
+                                player.setLife(player.getLife()-75);
+                                System.out.println("El enemigo " + N + " ataco!");
+                                if (O==3){
+                                    if (player.getHability()==1){
+                                        player.setLife(player.getLife()+35);
+                                    } else if (player.getHability()==3) {
+                                        player.setLife(player.getLife()+15);
+                                    }
+                                }
+                                System.out.println("Estado del Jugador: \nNombre: " + player.getName()+ "\nVida: " + player.getLife());
+                                if (player.getLife() <= 0){
+                                    System.out.println("/////////////////////////////////HAS MUERTO////////////////////////////////////////////////");
+                                    good=false;
+                                    tf=good;
+                                }
+                            }
+                            break;
 
                     }
                 }
@@ -962,7 +982,29 @@ public class Menu {
         }
     }
 
+    /**
+     * Funcion de jefe RAID, con enemigos alrededor
+     */
     public static void raidfight(){
-
+        boolean fight=true;
+        System.out.println("Aparecio un JEFE RAID");
+        tf = randomenemies();
+        if (enemies.size()>2){
+            for (int i = 0; i < enemies.size(); i++) {
+                enemies.remove(i+(enemies.size()-i+1));
+            }
+        }
+        Enemy raidboss= new Enemy(5);
+        enemies.add(raidboss);
+        while (fight){
+            if (tf){
+                System.out.println("/////////////////////////////////////////////////////");
+                Menu.showenemies();
+                fight= Menu.fight();
+            }else {
+                System.out.println("/////////////////////////////////////////////////////");
+                Menu.notfigth();
+            }
+        }
     }
 }

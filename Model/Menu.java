@@ -985,26 +985,25 @@ public class Menu {
     /**
      * Funcion de jefe RAID, con enemigos alrededor
      */
-    public static void raidfight(){
-        boolean fight=true;
-        System.out.println("Aparecio un JEFE RAID");
+    public static boolean raidfight() {
+        boolean fight = true;
         tf = randomenemies();
-        if (enemies.size()>2){
+        System.out.println("Aparecio un JEFE RAID");
+        if (enemies.size() > 2) {
             for (int i = 0; i < enemies.size(); i++) {
-                enemies.remove(i+(enemies.size()-i+1));
+                enemies.remove(i + (enemies.size() - i + 1));
             }
         }
-        Enemy raidboss= new Enemy(5);
+        Enemy raidboss = new Enemy(5);
         enemies.add(raidboss);
-        while (fight){
-            if (tf){
+        tf=true;
+        while (fight) {
+            if (tf) {
                 System.out.println("/////////////////////////////////////////////////////");
                 Menu.showenemies();
-                fight= Menu.fight();
-            }else {
-                System.out.println("/////////////////////////////////////////////////////");
-                Menu.notfigth();
+                fight = Menu.fight();
             }
         }
+        return fight;
     }
 }

@@ -24,8 +24,8 @@ public class DriverProgram {
                 System.out.println("/////////////////////////////////////////////////////");
                 boolean fight=true;
                 while (fight){
-                    int number= num.nextInt();
-                    if (number<=1){
+                    int number= num.nextInt(4);
+                    if (number<2){
                         boolean tf=Menu.randomenemies();
                         if (tf){
                             System.out.println("/////////////////////////////////////////////////////");
@@ -37,7 +37,7 @@ public class DriverProgram {
                         }
                     }else {
                         System.out.println("//////////////////////////////////////////////////////////");
-                        Menu.raidfight();
+                        fight= Menu.raidfight();
                     }
                 }
                 break;
